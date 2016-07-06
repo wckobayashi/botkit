@@ -245,8 +245,8 @@ function formatUptime(uptime) {
     return uptime;
 }
 
-controller.hears(['(usd|eur|gbp|aud|nzd|cad|chf)'],'direct_mention',function    (bot, message) {
-  var matches = message.text.match(/(usd|eur|gbp|aud|nzd|cad|chf)/i);
+controller.hears(['usd'], 'direct_message,direct_mention,mention', function(bot, message) {
+  var matches = message.text.match(/(usd)/i);
   var cur = matches[0].toUpperCase() + "JPY";
   var request = require( 'request' );
   url = 'http://fx.mybluemix.net/';
