@@ -81,14 +81,15 @@ var bot = controller.spawn({
 }).startRTM();
 
 
-controller.hears([''], 'direct_mention', function(bot, message) {
-    var name = encodeURI(message.text);
+controller.hears(['(.*)'], 'direct_message,direct_mention,mention', function(bot, message) {
+    var message_text = encodeURI(message.match[1]);
     var request = require( 'request' );
-    url = 'https://chatbot-api.userlocal.jp/api/character?key=YOUR_API_KEY&character_type=cat&message=' + massage_text;
+    url = 'https://chatbot-api.userlocal.jp/api/chat?key=YOUR_API_KEY&message=' + message_text;
     request( url, function( error, response, body ){
         if( !error && response.statusCode == 200 ){
             var json = JSON.parse( body );
-            var result = json['result'];
+            // とりあえず語尾をニャにしてみる
+            var result = json['result']; + "ニャ"
             bot.reply( message, result);
         }
     });
