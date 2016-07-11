@@ -89,7 +89,7 @@ controller.hears(['(.*)'], 'direct_message,direct_mention,mention', function(bot
         if( !error && response.statusCode == 200 ){
             var json = JSON.parse( body );
             // とりあえず語尾をニャにしてみる
-            var result = json['result']; + "ニャ"
+            var result = json['result'] + "ニャ";
             bot.reply( message, result);
         }
     });
